@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AGutierrezEstructuraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="DepartamentoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EmpleadoAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PuestoID" Type="int" Mode="In" />
+          <Parameter Name="DepartamentoID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EmpleadoByNombreCoincidente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EmpleadoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpleadoID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EmpleadoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PuestoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="AGutierrezEstructuraModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AGutierrezEstructuraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AGutierrezEstructuraEntities1" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="DepartamentoGetAll" ReturnType="Collection(AGutierrezEstructuraModel.DepartamentoGetAll_Result)" />
+          <FunctionImport Name="EmpleadoAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PuestoID" Mode="In" Type="Int32" />
+            <Parameter Name="DepartamentoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EmpleadoByNombreCoincidente" ReturnType="Collection(AGutierrezEstructuraModel.EmpleadoByNombreCoincidente_Result)">
+          <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EmpleadoDelete">
+          <Parameter Name="EmpleadoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PuestoGetAll" ReturnType="Collection(AGutierrezEstructuraModel.PuestoGetAll_Result)" />
+          <FunctionImport Name="EmpleadoGetAll" ReturnType="Collection(AGutierrezEstructuraModel.EmpleadoGetAll_Result)">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="DepartamentoGetAll_Result">
+          <Property Type="Int32" Name="DepartamentoID" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="EmpleadoByNombreCoincidente_Result">
+          <Property Type="Int32" Name="EmpleadoID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PuestoID" Nullable="true" />
+          <Property Type="Int32" Name="DepartamentoID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PuestoGetAll_Result">
+          <Property Type="Int32" Name="PuestoID" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="EmpleadoGetAll_Result">
+          <Property Type="Int32" Name="EmpleadoID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PuestoID" Nullable="true" />
+          <Property Type="Int32" Name="DepartamentoID" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AGutierrezEstructuraModelStoreContainer" CdmEntityContainer="AGutierrezEstructuraEntities1" >
+          <FunctionImportMapping FunctionImportName="DepartamentoGetAll" FunctionName="AGutierrezEstructuraModel.Store.DepartamentoGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezEstructuraModel.DepartamentoGetAll_Result">
+                <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EmpleadoAdd" FunctionName="AGutierrezEstructuraModel.Store.EmpleadoAdd" />
+          <FunctionImportMapping FunctionImportName="EmpleadoByNombreCoincidente" FunctionName="AGutierrezEstructuraModel.Store.EmpleadoByNombreCoincidente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezEstructuraModel.EmpleadoByNombreCoincidente_Result">
+                <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PuestoID" ColumnName="PuestoID" />
+                <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EmpleadoDelete" FunctionName="AGutierrezEstructuraModel.Store.EmpleadoDelete" />
+          <FunctionImportMapping FunctionImportName="PuestoGetAll" FunctionName="AGutierrezEstructuraModel.Store.PuestoGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezEstructuraModel.PuestoGetAll_Result">
+                <ScalarProperty Name="PuestoID" ColumnName="PuestoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EmpleadoGetAll" FunctionName="AGutierrezEstructuraModel.Store.EmpleadoGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezEstructuraModel.EmpleadoGetAll_Result">
+                <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PuestoID" ColumnName="PuestoID" />
+                <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
